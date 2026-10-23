@@ -251,10 +251,17 @@ public class BioBuzzStarterBotTeleop extends OpMode {
          * holding down the right gamepad. If they are, then we want to start spinning up the launcher.
          * Otherwise, we start spinning the launcher down.
          */
+        double curVelocity = launcher.getVelocity();
         if (gamepad1.right_bumper) {
             launcher.setVelocity(LAUNCHER_TARGET_VELOCITY);
-        } else {
-            launcher.setVelocity(0);
+        }
+        else {
+            if (curVelocity > 100) {
+                launcher.setPower(-0.25);
+            } else {
+                launcher.setPower(0);
+            }
+
         }
 
         /*
